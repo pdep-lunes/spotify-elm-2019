@@ -12,3 +12,6 @@ node_modules
 
 # Desktop Services Store de macOS
 .DS_Store
+
+#IDE
+.vscode

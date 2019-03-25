@@ -1,0 +1,12 @@
+{
+    //Estos settings solo funcionan para Windows. Se pueden cambiar para linux remplazando ".\\node_modules\\.bin\\" por "./node_modules/.bin/"
+    "elm.compiler": ".\\node_modules\\.bin\\elm",
+    "elm.makeCommand": ".\\node_modules\\.bin\\elm-make",
+    "elm.formatCommand": ".\\node_modules\\.bin\\elm-format",
+    "elm.analyseCommand": ".\\node_modules\\.bin\\elm-analyse",
+    "elm.analyseEnabled": true,
+    "[elm]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveTimeout": 1500
+    },
+}
