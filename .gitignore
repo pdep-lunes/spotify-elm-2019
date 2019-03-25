@@ -1,4 +1,14 @@
-# elm-package generated files
+# Distribution
+build/
+
+# Generados por elm-package
 elm-stuff
-# elm-repl generated files
+
+# Generados por elm-repl
 repl-temp-*
+
+# Dependencias de npm
+node_modules
+
+# Desktop Services Store de macOS
+.DS_Store
