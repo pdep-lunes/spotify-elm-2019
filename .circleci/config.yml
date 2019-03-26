@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:lts-jessie
+
+    steps:
+      - restore_cache: #  https://circleci.com/docs/2.0/caching/
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+
+      - checkout
+
+      - run:
+          name: Instalar proyecto
+          command: npm install
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+            - elm_stuff
+
+      - run:
+          name: Chekear la version de node
+          command: node -v
+
+      - run:
+          name: Project tests
+          command: npm run test
