@@ -102,5 +102,17 @@
 }
 
 .song-player {
-  display: none;
+  /* display: none; */
+}
+
+.player-container {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 65px;
+  width: 100%;
+  background-color: #282828;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

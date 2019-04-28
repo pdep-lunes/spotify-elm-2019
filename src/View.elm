@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Components.SongItem exposing (..)
 import Components.Search exposing (..)
+import Components.Player exposing (..)
 
 import Msg exposing (..)
 import Models exposing (..)
@@ -20,9 +21,6 @@ view model =
         text "PdepTify"
       ],
       div [ class "container" ] (List.map songItem model.songs),
-      audio [ src model.url
-            , controls True
-            , class "song-player" ]
-            []
+      player model
     ]
   ]
