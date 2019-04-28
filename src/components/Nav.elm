@@ -9,7 +9,7 @@ import Components.Search exposing (..)
 navbar : Html Msg
 navbar =
   nav [ class "nav" ] [
-    img [ class "nav-logo", src "./assets/logo.png" ] [],
+    img [ class "nav-logo", src "../public/assets/logo.png" ] [],
     search,
     text "PdepTify"
   ]

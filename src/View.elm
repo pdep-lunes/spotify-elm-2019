@@ -13,7 +13,7 @@ view : Model -> Html Msg
 view model =
   div [] [
     node "link" [ href "https://fonts.googleapis.com/css?family=Montserrat", rel "stylesheet" ] [],
-    node "link" [ href "./style.css", rel "stylesheet" ] [],
+    node "link" [ href "../public/style.css", rel "stylesheet" ] [],
     div [ class "root" ] [
       navbar,
       div [ class "container" ] (List.map songItem model.songs),
