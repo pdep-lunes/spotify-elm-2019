@@ -1,6 +1,9 @@
 module View exposing (..)
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
+import Styles exposing (..)
+import Components.SongItem exposing (..)
 
 import Msg exposing (..)
 import Models exposing (..)
@@ -8,5 +11,6 @@ import Models exposing (..)
 view : Model -> Html Msg
 view model = 
   div [] [
-    span [] [ Html.text "Hello World!"]
+    node "link" [ href "https://fonts.googleapis.com/css?family=Montserrat", rel "stylesheet" ] [],
+    div [ container ] (List.map songItem model.songs)
   ]
