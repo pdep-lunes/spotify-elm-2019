@@ -3,8 +3,8 @@ module View exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Components.SongItem exposing (..)
-import Components.Search exposing (..)
 import Components.Player exposing (..)
+import Components.Nav exposing (..)
 
 import Msg exposing (..)
 import Models exposing (..)
@@ -15,11 +15,7 @@ view model =
     node "link" [ href "https://fonts.googleapis.com/css?family=Montserrat", rel "stylesheet" ] [],
     node "link" [ href "./style.css", rel "stylesheet" ] [],
     div [ class "root" ] [
-      nav [ class "nav" ] [
-        img [ class "nav-logo", src "./assets/logo.png" ] [],
-        search,
-        text "PdepTify"
-      ],
+      navbar,
       div [ class "container" ] (List.map songItem model.songs),
       player model
     ]

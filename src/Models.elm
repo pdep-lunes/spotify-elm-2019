@@ -59,6 +59,51 @@ bohemianRhapsody = {
   artist = "Queen"
   }
 
+allAlongTheWatchower : Song
+allAlongTheWatchower = {
+  id = 6,
+  cover = "https://i.scdn.co/image/b9f988b2164ef879c92175f7414726d77530a3a0",
+  url = "https://p.scdn.co/mp3-preview/5eec2933740ab3984340d5f004813f8275e1bb97?cid=774b29d4f13844c495f206cafdad9c86",
+  name ="All Along the Watchower",
+  artist = "Jimi Hendrix"
+  }
+
+racat : Song
+racat = {
+  id = 7,
+  cover = "https://i.scdn.co/image/c3f1a3cc46715363464bbf1b3c802825ce17932b",
+  url = "https://p.scdn.co/mp3-preview/4fce7c740edf42da51bdfce5dff49d2e580405a2?cid=774b29d4f13844c495f206cafdad9c86",
+  name = "Racat",
+  artist = "Marilina Bertoldi"
+  }
+
+nuevo : Song
+nuevo = {
+  id = 8,
+  cover = "https://i.scdn.co/image/0ce310a6f5c4cce34ed16332b1042710e81ebd8e",
+  url = "https://p.scdn.co/mp3-preview/5098ae96e83b3180e8f2382160e3f49467e291b2?cid=774b29d4f13844c495f206cafdad9c86",
+  name = "Nuevo",
+  artist = "Capitán Cactus"
+  }
+
+missYou : Song
+missYou = {
+  id = 9,
+  cover = "https://i.scdn.co/image/e15ffec01bd7c4e902d2b0c94ba270f45ca63d00",
+  url = "https://p.scdn.co/mp3-preview/24d78633a528e09723b948bf787fa476666bf45c?cid=774b29d4f13844c495f206cafdad9c86",
+  name = "Miss You",
+  artist = "The Rolling Stones"
+  }
+
+fuego : Song
+fuego = {
+  id = 10,
+  cover = "https://i.scdn.co/image/af4f3a6f988518c7eb425cccaf1fb7e7732cc723",
+  url = "https://p.scdn.co/mp3-preview/27ee0339fa487fb13c96e07a5476e0e9097f63e1?cid=774b29d4f13844c495f206cafdad9c86",
+  name = "Fuego",
+  artist = "Intoxicados"
+  }
+
 initialModel : Model
 initialModel = {
   songs =
@@ -66,6 +111,11 @@ initialModel = {
     , botasLocas
     , whatsTheUse
     , pastizal
-    , bohemianRhapsody ],
+    , bohemianRhapsody
+    , allAlongTheWatchower
+    , racat
+    , nuevo
+    , missYou
+    , fuego ],
   url = "https://p.scdn.co/mp3-preview/a69cabb16c6c3333db903d1f538e808493689e40?cid=774b29d4f13844c495f206cafdad9c86"
   }

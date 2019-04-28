@@ -8,9 +8,17 @@
   background-color: #181818;
   font-family: Montserrat;
   min-height: 100vh;
+  padding-top: 60px;
+  padding-bottom: 65px;
 }
 
 .nav {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  box-shadow: 1px 1px 6px #282828;
   background-color: #282828;
   height: 60px;
   display: flex;
