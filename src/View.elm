@@ -9,8 +9,13 @@ import Msg exposing (..)
 import Models exposing (..)
 
 view : Model -> Html Msg
-view model = 
+view model =
   div [] [
     node "link" [ href "https://fonts.googleapis.com/css?family=Montserrat", rel "stylesheet" ] [],
-    div [ container ] (List.map songItem model.songs)
+    div [ root ] [
+      div [ container ] (List.map songItem model.songs),
+      audio [ src model.url
+            , controls True ]
+            []
+    ]
   ]

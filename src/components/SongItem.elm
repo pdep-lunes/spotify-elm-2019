@@ -31,8 +31,5 @@ songItem song =
   div [ songItemStyle ] [
     img [ src song.cover, width 150, height 150 ] [],
     a [ name, href song.url, target "_blank" ] [ text song.name ],
-    span [ artist ] [ text song.artist ],
-    audio [ src song.url
-          , controls True ]
-          []
+    span [ artist ] [ text song.artist ]
   ]
