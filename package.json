@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "elm-make src/Main.elm --output public/index.html"
+    "build": "elm make src/Main.elm --output public/index.html"
   },
   "keywords": [
     "elm",
