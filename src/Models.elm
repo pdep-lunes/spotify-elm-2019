@@ -67,5 +67,5 @@ initialModel = {
     , whatsTheUse
     , pastizal
     , bohemianRhapsody ],
-  url = "https://p.scdn.co/mp3-preview/a0df24b12820557d9b153232546907b51900e555?cid=774b29d4f13844c495f206cafdad9c86"
+  url = "https://p.scdn.co/mp3-preview/a69cabb16c6c3333db903d1f538e808493689e40?cid=774b29d4f13844c495f206cafdad9c86"
   }

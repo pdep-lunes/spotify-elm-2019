@@ -2,12 +2,14 @@ module Components.SongItem exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Msg exposing (..)
 import Models exposing (Song)
 
 songItemStyle =
   style
-    [ ("display", "flex")
+    [ ("width", "150px")
+    , ("display", "flex")
     , ("flex-direction", "column")
     , ("justify-content", "left")
     , ("margin", "4px") ]
@@ -29,7 +31,13 @@ artist =
 songItem : Song -> Html Msg
 songItem song =
   div [ songItemStyle ] [
-    img [ src song.cover, width 150, height 150 ] [],
-    a [ name, href song.url, target "_blank" ] [ text song.name ],
+    div [ class "song-cover-container" ] [
+      img [ class "cover"
+          , onClick (Play song.id)
+          , src song.cover
+          , width 150
+          , height 150 ] []
+    ],
+    a [ name ] [ text song.name ],
     span [ artist ] [ text song.artist ]
   ]

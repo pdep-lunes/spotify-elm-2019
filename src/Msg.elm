@@ -1,3 +1,5 @@
 module Msg exposing (..)
 
-type Msg = NoOp | Like
+type Msg
+  = NoOp
+  | Play Int

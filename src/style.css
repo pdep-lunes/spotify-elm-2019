@@ -1,0 +1,17 @@
+.song-cover-container {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.cover {
+  width: 150px;
+  height: 150px;
+  transition: all ease-in-out 0.2s;
+}
+
+.cover:hover {
+  transform: scale(1.2);
+  filter: blur(0.5px) grayscale(0.5) opacity(0.3);
+  cursor: pointer;
+}
