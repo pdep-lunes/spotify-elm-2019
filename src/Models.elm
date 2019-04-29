@@ -6,13 +6,18 @@ type alias Song = {
   url: String,
   name: String,
   artist: String
-}
+ }
+
+type Path
+ = Home
+ | Playlist
 
 type alias Model = {
   songs: List Song,
   filteredSongs: List Song,
-  url: String
-}
+  url: String,
+  path: Path
+ }
 
 amenabar : Song
 amenabar = {
@@ -105,6 +110,24 @@ fuego = {
   artist = "Intoxicados"
   }
 
+deanTown : Song
+deanTown = {
+  id = 11,
+  cover = "https://i.scdn.co/image/48ffa954349bac528df638628a20df6977932fa3",
+  url = "https://p.scdn.co/mp3-preview/bb5097bd49baed573ced30273b49079e42537357?cid=774b29d4f13844c495f206cafdad9c86",
+  name = "Dean Town",
+  artist = "Vulfpeck"
+  }
+
+asilo : Song
+asilo = {
+  id = 12,
+  cover = "https://i.scdn.co/image/4fa334787416967e8ba3cc378105e34df2d05d78",
+  url = "https://p.scdn.co/mp3-preview/a93696ba4517210d1048188c6f41c44d4c7a7470?cid=774b29d4f13844c495f206cafdad9c86",
+  name = "Asilo (feat. Mon Laferte)",
+  artist = "Jorge Drexler"
+  }
+
 allTheSongs : List Song
 allTheSongs =
     [ amenabar
@@ -116,11 +139,14 @@ allTheSongs =
     , racat
     , nuevo
     , missYou
-    , fuego ]
+    , fuego
+    , deanTown
+    , asilo ]
 
 initialModel : Model
 initialModel = {
   songs = allTheSongs,
   filteredSongs = allTheSongs,
-  url = "https://p.scdn.co/mp3-preview/a69cabb16c6c3333db903d1f538e808493689e40?cid=774b29d4f13844c495f206cafdad9c86"
+  url = "https://p.scdn.co/mp3-preview/a69cabb16c6c3333db903d1f538e808493689e40?cid=774b29d4f13844c495f206cafdad9c86",
+  path = Home
   }

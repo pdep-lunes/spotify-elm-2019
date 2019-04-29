@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Msg exposing (..)
-import Models exposing (Song)
+import Models exposing (..)
 
 songItem : Song -> Html Msg
 songItem song =
@@ -18,5 +18,6 @@ songItem song =
     ],
     span [ class "song-name"
          , onClick (Play song.id) ] [ text song.name ],
-    span [ class "song-artist" ] [ text song.artist ]
+    span [ class "song-artist"
+         , onClick (ChangePath Playlist) ] [ text song.artist ]
   ]

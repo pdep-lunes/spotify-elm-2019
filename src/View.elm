@@ -9,6 +9,18 @@ import Components.Nav exposing (..)
 import Msg exposing (..)
 import Models exposing (..)
 
+homeView : Model -> Html Msg
+homeView model =
+  div [ class "container" ] (List.map songItem model.filteredSongs)
+
+viewByPath : Model -> Html Msg
+viewByPath model =
+  case model.path of
+      Home ->
+        homeView model
+      Playlist ->
+        div [] []
+
 view : Model -> Html Msg
 view model =
   div [] [
@@ -16,7 +28,7 @@ view model =
     node "link" [ href "../public/style.css", rel "stylesheet" ] [],
     div [ class "root" ] [
       navbar,
-      div [ class "container" ] (List.map songItem model.filteredSongs),
+      viewByPath model,
       player model
     ]
   ]
