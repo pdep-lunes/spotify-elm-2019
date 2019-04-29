@@ -10,5 +10,7 @@ search : Html Msg
 search =
   div [ class "search-container" ] [
     input [ class "search-input"
-          , placeholder "Search..." ] []
+          , placeholder "Search..."
+          , onInput Filter
+          , autofocus True ] []
   ]

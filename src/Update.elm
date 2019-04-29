@@ -11,3 +11,5 @@ update msg model =
       model
     Play id ->
       { model | url = urlById id model.songs }
+    Filter text ->
+      { model | filteredSongs = filterSongs text model.songs }

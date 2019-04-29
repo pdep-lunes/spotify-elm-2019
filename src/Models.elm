@@ -10,6 +10,7 @@ type alias Song = {
 
 type alias Model = {
   songs: List Song,
+  filteredSongs: List Song,
   url: String
 }
 
@@ -104,9 +105,8 @@ fuego = {
   artist = "Intoxicados"
   }
 
-initialModel : Model
-initialModel = {
-  songs =
+allTheSongs : List Song
+allTheSongs =
     [ amenabar
     , botasLocas
     , whatsTheUse
@@ -116,6 +116,11 @@ initialModel = {
     , racat
     , nuevo
     , missYou
-    , fuego ],
+    , fuego ]
+
+initialModel : Model
+initialModel = {
+  songs = allTheSongs,
+  filteredSongs = allTheSongs,
   url = "https://p.scdn.co/mp3-preview/a69cabb16c6c3333db903d1f538e808493689e40?cid=774b29d4f13844c495f206cafdad9c86"
   }

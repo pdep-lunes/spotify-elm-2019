@@ -16,7 +16,7 @@ view model =
     node "link" [ href "../public/style.css", rel "stylesheet" ] [],
     div [ class "root" ] [
       navbar,
-      div [ class "container" ] (List.map songItem model.songs),
+      div [ class "container" ] (List.map songItem model.filteredSongs),
       player model
     ]
   ]
