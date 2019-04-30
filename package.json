@@ -1,0 +1,37 @@
+{
+  "name": "spotify-elm-2019",
+  "version": "1.0.0",
+  "description": "spotify-elm-2019 tp integrador funcional pdep-lunes",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "elm-app": "^0.0.19"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "elm-app build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdep-lunes/spotify-elm-2019.git"
+  },
+  "keywords": [
+    "elm",
+    "pdep",
+    "funcional",
+    "haskell",
+    "web",
+    "spotify",
+    "music",
+    "utn"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juancuiule/spotify-elm-2019/issues"
+  },
+  "homepage": "https://github.com/juancuiule/spotify-elm-2019#readme"
+}
