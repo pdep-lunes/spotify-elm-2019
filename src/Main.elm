@@ -4,18 +4,20 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-import Views.Home exposing (homeView, Model, initialModel)
+import Models exposing (Model, initialModel)
+
+import Views.Home exposing (homeView)
 import Components.Nav exposing (navbar)
 import Components.Player exposing (player)
 
 import Msg exposing (..)
+import Update exposing (update)
+
+import Data.Song exposing (getAllTheSongs)
+import Types exposing (Song)
 
 init : ( Model, Cmd Msg )
-init = ( initialModel, Cmd.none )
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-  ( model, Cmd.none )
+init = ( initialModel, getAllTheSongs )
 
 view : Model -> Html Msg
 view model =
@@ -23,7 +25,7 @@ view model =
     div [ class "root" ] [
       navbar,
       homeView model,
-      player {- model -}
+      player model
     ]
   ]
 

@@ -103,7 +103,17 @@ const fetchUserTracks = async ({
 
 async function run() {
   const userTracks = await fetchUserTracks({type: 'tracks', limit: 1000, time_range: 'long_term'})
-  const images = userTracks.map(track => parseTrack(track).image)
-  console.log(new Set(images))
+  const x = userTracks
+    .map((track, i) => {
+      const parsed = parseTrack(track)
+      return ({
+        id: i + 1,
+        artist: parsed.artistsNames[0],
+        preview_url: parsed.preview_url,
+        name: parsed.name,
+        cover: parsed.image
+      })
+    })
+  console.log(JSON.stringify(x,null,2))
 }
 run()

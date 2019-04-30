@@ -6,7 +6,7 @@ import Html.Events exposing (..)
 
 import Msg exposing (..)
 
-import Data.Song exposing (Song)
+import Types exposing (Song)
 
 songItem : Song -> Html Msg
 songItem song =
