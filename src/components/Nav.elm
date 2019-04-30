@@ -4,7 +4,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Msg exposing (..)
-import Models exposing (..)
 
 import Components.Search exposing (..)
 

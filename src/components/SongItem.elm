@@ -3,8 +3,10 @@ module Components.SongItem exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+
 import Msg exposing (..)
-import Models exposing (..)
+
+import Data.Song exposing (Song)
 
 songItem : Song -> Html Msg
 songItem song =

@@ -4,11 +4,9 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-import Views.Home exposing (homeView)
+import Views.Home exposing (homeView, Model, initialModel)
 import Components.Nav exposing (navbar)
 import Components.Player exposing (player)
-
-import Models exposing (Model, initialModel)
 
 import Msg exposing (..)
 
@@ -25,7 +23,7 @@ view model =
     div [ class "root" ] [
       navbar,
       homeView model,
-      player model
+      player {- model -}
     ]
   ]
 
