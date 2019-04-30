@@ -1,3 +1,7 @@
+[data-elm-hot="true"] {
+  height: inherit;
+}
+
 * {
   box-sizing: border-box;
   margin: 0px;

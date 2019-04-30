@@ -13,5 +13,3 @@ update msg model =
       { model | url = urlById id model.songs }
     Filter text ->
       { model | filteredSongs = filterSongs text model.songs }
-    ChangePath path ->
-      { model | path = path }

@@ -1,4 +1,4 @@
-module Models exposing (..)
+module Models exposing (Song, Model, initialModel)
 
 type alias Song = {
   id: Int,
@@ -8,15 +8,10 @@ type alias Song = {
   artist: String
  }
 
-type Path
- = Home
- | Playlist
-
 type alias Model = {
   songs: List Song,
   filteredSongs: List Song,
-  url: String,
-  path: Path
+  url: String
  }
 
 amenabar : Song
@@ -147,6 +142,5 @@ initialModel : Model
 initialModel = {
   songs = allTheSongs,
   filteredSongs = allTheSongs,
-  url = "https://p.scdn.co/mp3-preview/a69cabb16c6c3333db903d1f538e808493689e40?cid=774b29d4f13844c495f206cafdad9c86",
-  path = Home
+  url = "https://p.scdn.co/mp3-preview/a69cabb16c6c3333db903d1f538e808493689e40?cid=774b29d4f13844c495f206cafdad9c86"
   }

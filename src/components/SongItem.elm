@@ -18,6 +18,5 @@ songItem song =
     ],
     span [ class "song-name"
          , onClick (Play song.id) ] [ text song.name ],
-    span [ class "song-artist"
-         , onClick (ChangePath Playlist) ] [ text song.artist ]
+    span [ class "song-artist" ] [ text song.artist ]
   ]

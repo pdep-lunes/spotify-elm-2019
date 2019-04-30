@@ -12,8 +12,7 @@ navbar : Html Msg
 navbar =
   nav [ class "nav" ] [
     img [ class "nav-logo"
-        , src "../public/assets/logo.png"
-        , onClick (ChangePath Home) ] [],
+        , src "/img/logo.png" ] [],
     search,
     text "PdepTify"
   ]
