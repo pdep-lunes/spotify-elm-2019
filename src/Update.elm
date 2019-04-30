@@ -16,6 +16,6 @@ update msg model =
         Err _ ->
           ( model, Cmd.none )
     Play id ->
-      ( { model | url = urlById id model.songs }, Cmd.none )
+      ( { model | playerUrl = urlById id model.songs }, Cmd.none )
     Filter text ->
       ( { model | filteredSongs = filterSongs text model.songs }, Cmd.none )

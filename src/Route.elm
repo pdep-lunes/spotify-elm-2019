@@ -4,14 +4,20 @@ import Browser.Navigation as Nav
 import Html exposing (Attribute)
 import Html.Attributes as Attr
 import Url exposing (..)
-import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
+import Url.Parser as Parser exposing ((</>), Parser, map, oneOf, s, string)
 
 -- ROUTING
 
-type Route = Home
+type Route
+  = Home
+  | Playlist
 
 parser : Parser (Route -> a) a
-parser = oneOf [ Parser.map Home Parser.top ]
+parser =
+  oneOf
+    [ map Home Parser.top
+    , map Playlist (s "playlist")
+    ]
 
 -- PUBLIC HELPERS
 
@@ -43,5 +49,7 @@ routeToString page =
       case page of
         Home ->
           []
+        Playlist ->
+          [ "/playlist" ]
   in
   "#/" ++ String.join "/" pieces

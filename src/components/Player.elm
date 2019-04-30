@@ -10,7 +10,7 @@ import Models exposing (Model)
 player : Model -> Html Msg
 player model =
   div [ class "player-container" ] [
-    audio [ src model.url
+    audio [ src model.playerUrl
             , controls True
             , autoplay True
             , class "song-player" ]
