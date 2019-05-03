@@ -17,9 +17,7 @@
   "scripts": {
     "start": "elm-app start",
     "build": "elm-app build",
-    "build-db": "tsc -p ./json-server/ & node ./json-server/fetch-data.js",
-    "serve-db": "json-server --watch ./json-server/db.json --port 5000",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-db": "tsc -p ./json-server/ & node ./json-server/fetch-data.js"
   },
   "repository": {
     "type": "git",
