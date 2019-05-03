@@ -1,7 +1,7 @@
 module Types exposing (Song)
 
 type alias Song = {
-  id: Int,
+  id: String,
   cover: String,
   url: String,
   name: String,

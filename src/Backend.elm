@@ -4,7 +4,7 @@ import Types exposing(Song)
 import Models exposing (Model)
 
 -- Debería darnos la url de la cancion en base al id
-urlById : Int -> List Song -> String
+urlById : String -> List Song -> String
 urlById id songs = ""
 
 -- Debería darnos las canciones que tengan ese texto en nombre o artista
@@ -13,7 +13,7 @@ filterByName text songs = songs
 
 -- Recibe un id y tiene que likear/dislikear una cancion
 -- switchear song.liked
-toggleLike : Int -> List Song -> List Song
+toggleLike : String -> List Song -> List Song
 toggleLike id songs = songs
 
 -- Esta funcion tiene que decir si una cancion tiene

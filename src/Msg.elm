@@ -8,8 +8,8 @@ import Types exposing (Song)
 type Msg
   = NoOp
   | Filter String
-  | Play Int
-  | Like Int
+  | Play String
+  | Like String
   | ToggleShowLiked
   | GotSongs (Result Http.Error (List Song))
   | LinkClicked Browser.UrlRequest

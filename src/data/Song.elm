@@ -9,18 +9,22 @@ import Types exposing (Song)
 
 -- DECODE
 
-decoder : D.Decoder Song
+decoder : D.Decoder (List Song)
 decoder =
-  D.map6 Song
-    (D.field "id" D.int)
-    (D.field "cover" D.string)
-    (D.field "preview_url" D.string)
-    (D.field "name" D.string)
-    (D.field "artist" D.string)
-    (D.field "liked" D.bool)
+  D.field "songs" (
+    D.list (
+      D.map6 Song
+        (D.field "id" D.string)
+        (D.field "cover" D.string)
+        (D.field "preview_url" D.string)
+        (D.field "name" D.string)
+        (D.field "artist" D.string)
+        (D.field "liked" D.bool)
+    )
+  )
 
 getAllTheSongs : Cmd Msg
 getAllTheSongs =
   Http.get
-    { url = "http://localhost:5000/songs"
-    , expect = Http.expectJson GotSongs (D.list decoder) }
+    { url = "/data/db.json"
+    , expect = Http.expectJson GotSongs decoder }
