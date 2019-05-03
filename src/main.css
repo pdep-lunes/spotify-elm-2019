@@ -38,6 +38,25 @@
   justify-self: flex-start;
 }
 
+.nav-toggle-only-liked {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.nav-toggle-only-liked.selected {
+  color: #1ed760;
+}
+
+.nav-toggle-only-liked img {
+  width: 100%
+}
+
 .search-container {
   justify-self: center;
   width: 50%;

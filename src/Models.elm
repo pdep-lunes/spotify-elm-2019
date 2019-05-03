@@ -6,9 +6,10 @@ import Url
 import Types exposing (Song)
 
 type alias Model = {
-  songs: List Song,
-  filteredSongs: List Song,
-  playerUrl: String,
-  key: Nav.Key,
-  url: Url.Url
+  songs: List Song, -- songs from db.json
+  playerUrl: String, -- url of current song
+  onlyLiked: Bool,
+  filterText: String,
+  key: Nav.Key, -- navigation
+  url: Url.Url -- navigation
  }

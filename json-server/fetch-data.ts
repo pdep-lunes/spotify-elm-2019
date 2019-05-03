@@ -119,7 +119,7 @@ async function getTracksParsed() {
         preview_url: parsed.preview_url,
         name: parsed.name,
         cover: parsed.image,
-        like: false,
+        liked: false,
       }
     })
     .filter(

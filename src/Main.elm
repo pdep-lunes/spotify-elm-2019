@@ -36,8 +36,9 @@ main =
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key = 
   ( { songs = []
-    , filteredSongs = []
     , playerUrl = ""
+    , filterText = ""
+    , onlyLiked = False
     , key = key
     , url = url }
   , getAllTheSongs
@@ -53,15 +54,17 @@ update msg model =
     GotSongs result ->
       case result of
         Ok songs ->
-          ( { model | songs = songs, filteredSongs = songs }, Cmd.none )
+          ( { model | songs = songs }, Cmd.none )
         Err _ ->
           ( model, Cmd.none )
     Play id ->
       ( { model | playerUrl = urlById id model.songs }, Cmd.none )
     Like id ->
-      ( { model | filteredSongs = toggleLike id model.filteredSongs }, Cmd.none )
+      ( { model | songs =  toggleLike id model.songs }, Cmd.none )
+    ToggleShowLiked ->
+      ( { model | onlyLiked = not model.onlyLiked }, Cmd.none )
     Filter text ->
-      ( { model | filteredSongs = filterSongs text model.songs }, Cmd.none )
+      ( { model | filterText = text }, Cmd.none )
     LinkClicked urlRequest ->
       case urlRequest of
         Browser.Internal url ->
@@ -88,7 +91,7 @@ view model =
   , body = [ 
       div [] [
         div [ class "root" ] [
-          navbar,
+          navbar model,
           homeView model,
           player model
         ]

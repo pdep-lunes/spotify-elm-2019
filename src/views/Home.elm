@@ -9,7 +9,8 @@ import Components.Nav exposing (..)
 import Msg exposing (..)
 import Types exposing (Song)
 import Models exposing (Model)
+import Backend exposing (applyFilters)
 
 homeView : Model -> Html Msg
 homeView model =
-  div [ class "container" ] (List.map songItem model.filteredSongs)
+  div [ class "container" ] ((List.map songItem << applyFilters) model)

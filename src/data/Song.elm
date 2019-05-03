@@ -17,7 +17,7 @@ decoder =
     (D.field "preview_url" D.string)
     (D.field "name" D.string)
     (D.field "artist" D.string)
-    (D.field "like" D.bool)
+    (D.field "liked" D.bool)
 
 getAllTheSongs : Cmd Msg
 getAllTheSongs =

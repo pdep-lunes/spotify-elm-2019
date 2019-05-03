@@ -10,6 +10,7 @@ type Msg
   | Filter String
   | Play Int
   | Like Int
+  | ToggleShowLiked
   | GotSongs (Result Http.Error (List Song))
   | LinkClicked Browser.UrlRequest
   | UrlChanged Url.Url

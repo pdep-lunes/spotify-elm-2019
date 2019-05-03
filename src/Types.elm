@@ -6,5 +6,5 @@ type alias Song = {
   url: String,
   name: String,
   artist: String,
-  like: Bool
+  liked: Bool
  }

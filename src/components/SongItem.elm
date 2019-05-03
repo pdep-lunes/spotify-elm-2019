@@ -8,12 +8,9 @@ import Msg exposing (..)
 
 import Types exposing (Song)
 
-hearth : Song -> Html Msg
-hearth song = 
-  if song.like then 
-    img [ src "img/like.png" ] []
-  else 
-    img [ src "img/no-like.png" ] []
+import Backend exposing (isLiked)
+
+import Components.Hearth exposing (hearth)
 
 songItem : Song -> Html Msg
 songItem song =
@@ -32,6 +29,6 @@ songItem song =
         span [ class "song-artist" ] [ text song.artist ]
       ],
       div [ class "song-hearth"
-          , onClick (Like song.id) ] [ hearth song ]
+          , onClick (Like song.id) ] [ (hearth << isLiked) song ]
     ]
   ]
