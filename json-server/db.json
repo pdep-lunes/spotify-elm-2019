@@ -1,13 +1,4 @@
 {
-  "artists": [
-    { "id": 1, "name": "Spinetta" },
-    { "id": 2, "name": "Sui Generis" },
-    { "id": 3, "name": "Mac Miller" },
-    { "id": 4, "name": "Usted Señalemelo" },
-    { "id": 5, "name": "Queen" },
-    { "id": 6, "name": "Jimi Hendrix" },
-    { "id": 7, "name": "Marilina Bertoldi" }
-  ],
   "songs": [
     {
       "id": 1,
