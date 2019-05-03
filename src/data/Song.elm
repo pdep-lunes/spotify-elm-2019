@@ -11,12 +11,13 @@ import Types exposing (Song)
 
 decoder : D.Decoder Song
 decoder =
-  D.map5 Song
+  D.map6 Song
     (D.field "id" D.int)
     (D.field "cover" D.string)
     (D.field "preview_url" D.string)
     (D.field "name" D.string)
     (D.field "artist" D.string)
+    (D.field "like" D.bool)
 
 getAllTheSongs : Cmd Msg
 getAllTheSongs =

@@ -58,6 +58,8 @@ update msg model =
           ( model, Cmd.none )
     Play id ->
       ( { model | playerUrl = urlById id model.songs }, Cmd.none )
+    Like id ->
+      ( { model | filteredSongs = toggleLike id model.filteredSongs }, Cmd.none )
     Filter text ->
       ( { model | filteredSongs = filterSongs text model.songs }, Cmd.none )
     LinkClicked urlRequest ->

@@ -8,6 +8,13 @@ import Msg exposing (..)
 
 import Types exposing (Song)
 
+hearth : Song -> Html Msg
+hearth song = 
+  if song.like then 
+    img [ src "img/like.png" ] []
+  else 
+    img [ src "img/no-like.png" ] []
+
 songItem : Song -> Html Msg
 songItem song =
   div [ class "song-container" ] [
@@ -18,7 +25,13 @@ songItem song =
           , width 150
           , height 150 ] []
     ],
-    span [ class "song-name"
-         , onClick (Play song.id) ] [ text song.name ],
-    span [ class "song-artist" ] [ text song.artist ]
+    div [ class "song-data" ] [
+      div [ class "song-info" ] [
+        span [ class "song-name"
+          , onClick (Play song.id) ] [ text song.name ],
+        span [ class "song-artist" ] [ text song.artist ]
+      ],
+      div [ class "song-hearth"
+          , onClick (Like song.id) ] [ hearth song ]
+    ]
   ]

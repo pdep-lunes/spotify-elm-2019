@@ -98,9 +98,21 @@
   cursor: pointer;
 }
 
+.song-data {
+  display: flex;
+  flex-direction: row;
+}
+
+.song-info {
+  flex: 3;
+  text-algn: left;
+  display: flex;
+  flex-direction: column;
+}
+
 .song-name {
   color: white;
-  font-size: 18px;
+  font-size: 14px;
   text-decoration: none;
   margin-top: 6px;
   transition: color 0.2s;
@@ -116,6 +128,23 @@
   font-size: 14px;
   margin-top: 2px;
   font-weight: bold;
+}
+
+.song-artist:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.song-hearth {
+  flex: 1 1;
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.song-hearth img {
+  width: 25px;
+  height: 25px
 }
 
 /* .song-player {

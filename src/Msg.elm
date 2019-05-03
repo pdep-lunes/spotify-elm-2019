@@ -9,6 +9,7 @@ type Msg
   = NoOp
   | Filter String
   | Play Int
+  | Like Int
   | GotSongs (Result Http.Error (List Song))
   | LinkClicked Browser.UrlRequest
   | UrlChanged Url.Url
