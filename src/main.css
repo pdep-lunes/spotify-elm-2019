@@ -77,12 +77,16 @@
 }
 
 .song-cover-container {
+  -webkit-user-drag: none;
+  user-select: none;
   width: 100%;
   overflow: hidden;
   user-select: none;
 }
 
 .song-cover {
+  -webkit-user-drag: none;
+  user-select: none;
   width: 100%;
   height: auto;
   transition: all ease-in-out 0.2s;
@@ -114,9 +118,9 @@
   font-weight: bold;
 }
 
-.song-player {
-  /* display: none; */
-}
+/* .song-player {
+  display: none;
+} */
 
 .player-container {
   position: fixed;
