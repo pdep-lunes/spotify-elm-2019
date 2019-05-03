@@ -14,3 +14,4 @@ node_modules
 .DS_Store
 
 json-server/.env
+json-server/fetch-data.js

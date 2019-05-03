@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { writeFile } from 'fs'
 
-require('dotenv').config()
+require('dotenv').config({path: './json-server/.env'})
 
 const API_URL = 'https://api.spotify.com/v1'
 const TOKEN = process.env.SPOTIFY_TOKEN
@@ -103,13 +104,13 @@ const fetchUserTracks = async ({
   return response.data.items as Array<Track>
 }
 
-async function run() {
+async function getTracksParsed() {
   const userTracks = await fetchUserTracks({
     type: 'tracks',
     limit: 1000,
     time_range: 'long_term',
   })
-  const x = userTracks
+  const tracks = userTracks
     .map((track, i) => {
       const parsed = parseTrack(track)
       return {
@@ -123,7 +124,22 @@ async function run() {
     .filter(
       ({ preview_url }) => preview_url !== null && preview_url !== undefined
     )
-  console.log(JSON.stringify(x, null, 2))
+  return tracks;
+}
+
+async function run() {
+  const tracks = await getTracksParsed()
+
+  const json = JSON.stringify({
+    songs: tracks
+  })
+  writeFile('./json-server/db.json', json, 'utf8', (err) => {
+    if (err) {
+      console.log('An error occured while writing JSON Object to File.')
+      return console.log(err)
+    }
+    console.log('JSON file has been saved.')
+  })
 }
 
 run()

@@ -14,12 +14,12 @@ decoder =
   D.map5 Song
     (D.field "id" D.int)
     (D.field "cover" D.string)
-    (D.field "url" D.string)
+    (D.field "preview_url" D.string)
     (D.field "name" D.string)
     (D.field "artist" D.string)
 
 getAllTheSongs : Cmd Msg
 getAllTheSongs =
   Http.get
-    { url = "http://localhost:3000/songs"
+    { url = "http://localhost:5000/songs"
     , expect = Http.expectJson GotSongs (D.list decoder) }
