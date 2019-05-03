@@ -133,7 +133,8 @@ async function run() {
   const tracksST = await getTracksParsed({time_range: "short_term"})
 
   const json = JSON.stringify({
-    songs: [...tracksLT, ...tracksMT, ...tracksST]
+    songs: tracksLT,
+    // songs: [...tracksLT, ...tracksMT, ...tracksST],
   })
   writeFile('./public/data/db.json', json, 'utf8', (err) => {
     if (err) {
