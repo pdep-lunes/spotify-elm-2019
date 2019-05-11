@@ -6,8 +6,10 @@ import Browser.Navigation as Nav
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Url
+import Url.Parser exposing (Parser, (</>), int, map, oneOf, s, string)
 
 import Views.Home exposing (homeView)
+import Views.Playlist exposing (playlistView)
 import Components.Nav exposing (navbar)
 import Components.Player exposing (player)
 
@@ -69,21 +71,22 @@ update msg model =
       case urlRequest of
         Browser.Internal url ->
           ( model, Nav.pushUrl model.key (Url.toString url) )
-
         Browser.External href ->
           ( model, Nav.load href )
     UrlChanged url ->
-      ( { model | url = url }
-      , Cmd.none
-      )
+      ( { model | url = url }, Cmd.none )
 
 -- SUBSCRIPTIONS
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
+subscriptions _ =
   Sub.none
 
 -- VIEW
+
+viewLink : String -> Html msg
+viewLink path =
+  li [] [ a [ href path ] [ text path ] ]
 
 view : Model -> Browser.Document Msg
 view model =
@@ -92,7 +95,19 @@ view model =
       div [] [
         div [ class "root" ] [
           navbar model,
-          homeView model,
+          ul []
+            [ viewLink "/home"
+            , viewLink "/playlist"
+            ],
+          case model.url.path of
+              "/home" -> 
+                homeView model
+              "/" -> 
+                homeView model
+              "/playlist" ->
+                playlistView model
+              _ -> span [] [ text "404" ]
+          ,
           player model
         ]
       ]
