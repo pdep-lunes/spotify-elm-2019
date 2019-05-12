@@ -16,9 +16,9 @@ import Html.Events exposing (..)
 songItem : Song -> Html Msg
 songItem song =
   div [ class "song-container" ] [
-    div [ class "song-cover-container" ] [
+    div [ class "song-cover-container-playlist"
+        , onClick (Play song.id) ] [
       img [ class "song-cover"
-          , onClick (Play song.id)
           , src song.cover
           , width 150
           , height 150 ] []
@@ -29,8 +29,9 @@ songItem song =
           , onClick (Play song.id) ] [ text song.name ],
         span [ class "song-artist" ] [ text song.artist ]
       ],
-      div [ class "song-hearth"
-          , onClick (Like song.id) ] [ (hearth << isLiked) song ]
+      div [ class "add-to-playlist" ] [
+        i [ class "icon ion-ios-add-circle button-add" ] []
+      ]
     ]
   ]
 
@@ -45,6 +46,9 @@ playlistRow song =
     div [ class "playlist-song-info" ] [
       span [ class "song-name" ] [ text song.name ],
       span [ class "song-artist" ] [ text song.artist ]
+    ],
+    div [ class "remove-from-playlist" ] [
+      i [ class "icon ion-ios-remove-circle button-remove" ] []
     ]
   ]
 
@@ -56,6 +60,6 @@ playlistView model =
         ((List.map songItem << applyFilters) model)
     , div [ class "sidebar" ] [
       h1 [ class "playlist-name" ] [ text "pdeplaylist"],
-      div [] ((List.map playlistRow << List.take 100) model.songs)
+      div [] ((List.map playlistRow << List.take 100) model.playlist)
     ]
   ]

@@ -15,9 +15,9 @@ import Components.Hearth exposing (hearth)
 songItem : Song -> Html Msg
 songItem song =
   div [ class "song-container" ] [
-    div [ class "song-cover-container" ] [
+    div [ class "song-cover-container"
+        , onClick (Play song.id) ] [
       img [ class "song-cover"
-          , onClick (Play song.id)
           , src song.cover
           , width 150
           , height 150 ] []

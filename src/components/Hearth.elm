@@ -9,6 +9,6 @@ import Msg exposing (..)
 hearth : Bool -> Html Msg
 hearth liked = 
   if liked then 
-    img [ src "img/like.png" ] []
+    i [ class "icon ion-ios-heart selected" ] []
   else 
-    img [ src "img/no-like.png" ] []
+    i [ class "icon ion-ios-heart-empty" ] []

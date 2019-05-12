@@ -38,6 +38,7 @@ main =
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key = 
   ( { songs = []
+    , playlist = []
     , playerUrl = ""
     , filterText = ""
     , onlyLiked = False
