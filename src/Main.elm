@@ -60,6 +60,12 @@ update msg model =
           ( { model | songs = songs }, Cmd.none )
         Err _ ->
           ( model, Cmd.none )
+    AddToPlaylist song ->
+      -- use backend function
+      ( { model | playlist = model.playlist }, Cmd.none )
+    RemoveFromPlaylist id ->
+      -- use backend function
+      ( { model | playlist = model.playlist }, Cmd.none )
     Play id ->
       ( { model | playerUrl = urlById id model.songs }, Cmd.none )
     Like id ->

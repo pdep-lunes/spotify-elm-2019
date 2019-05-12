@@ -17,7 +17,7 @@ songItem : Song -> Html Msg
 songItem song =
   div [ class "song-container" ] [
     div [ class "song-cover-container-playlist"
-        , onClick (Play song.id) ] [
+        , onClick (AddToPlaylist song) ] [
       img [ class "song-cover"
           , src song.cover
           , width 150
@@ -30,7 +30,8 @@ songItem song =
         span [ class "song-artist" ] [ text song.artist ]
       ],
       div [ class "add-to-playlist" ] [
-        i [ class "icon ion-ios-add-circle button-add" ] []
+        i [ class "icon ion-ios-add-circle button-add"
+          , onClick (AddToPlaylist song) ] []
       ]
     ]
   ]
@@ -48,7 +49,8 @@ playlistRow song =
       span [ class "song-artist" ] [ text song.artist ]
     ],
     div [ class "remove-from-playlist" ] [
-      i [ class "icon ion-ios-remove-circle button-remove" ] []
+      i [ class "icon ion-ios-remove-circle button-remove"
+        , onClick (RemoveFromPlaylist song.id) ] []
     ]
   ]
 
