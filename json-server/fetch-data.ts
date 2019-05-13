@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { writeFile } from 'fs'
 
-require('dotenv').config({path: './json-server/.env'})
+require('dotenv').config({ path: './json-server/.env' })
 
 const API_URL = 'https://api.spotify.com/v1'
 const TOKEN = process.env.SPOTIFY_TOKEN
+
+const uniqBy = require('lodash.uniqby')
 
 type Artist = {
   name: string
@@ -43,7 +45,14 @@ type ParseTrack = {
 }
 
 const parseTrack = (trackData: Track): ParseTrack => {
-  const { id, album, artists, duration_ms, name, preview_url }: Track = trackData
+  const {
+    id,
+    album,
+    artists,
+    duration_ms,
+    name,
+    preview_url,
+  }: Track = trackData
 
   const image = album.images.find(
     ({ width, height }) => width === 300 || height === 300
@@ -78,21 +87,21 @@ type FetchUserTracksParam = {
   type?: string
   limit?: number
   offset?: number
-  time_range?: "medium_term" | "long_term" | "short_term"
+  time_range?: 'medium_term' | 'long_term' | 'short_term'
 }
 
 const fetchUserTracksDefaultParam: FetchUserTracksParam = {
   type: 'tracks',
   limit: 1000,
   offset: 0,
-  time_range: "medium_term",
+  time_range: 'medium_term',
 }
 
 const fetchUserTracks = async ({
   type = 'tracks',
   limit = 30,
   offset = 0,
-  time_range = "medium_term"
+  time_range = 'medium_term',
 }: FetchUserTracksParam = fetchUserTracksDefaultParam) => {
   const response = await axios.get(
     `${API_URL}/me/top/${type}?limit=${limit}&time_range=${time_range}&offset=${offset}`,
@@ -124,19 +133,36 @@ async function getTracksParsed(params?: FetchUserTracksParam) {
     .filter(
       ({ preview_url }) => preview_url !== null && preview_url !== undefined
     )
-  return tracks;
+  return tracks
 }
 
 async function run() {
-  const tracksLT = await getTracksParsed({time_range: "long_term"})
-  const tracksMT = await getTracksParsed({time_range: "medium_term"})
-  const tracksST = await getTracksParsed({time_range: "short_term"})
-
-  const json = JSON.stringify({
-    songs: tracksLT,
-    // songs: [...tracksLT, ...tracksMT, ...tracksST],
+  const tracksLTPromise = getTracksParsed({
+    time_range: 'long_term',
+    limit: 1000000,
   })
-  writeFile('./public/data/db.json', json, 'utf8', (err) => {
+  const tracksMTPromise = getTracksParsed({
+    time_range: 'medium_term',
+    limit: 1000000,
+  })
+  const tracksSTPromise = getTracksParsed({
+    time_range: 'short_term',
+    limit: 1000000,
+  })
+
+  const [tracksLT, tracksMT, tracksST] = await Promise.all([
+    tracksLTPromise,
+    tracksMTPromise,
+    tracksSTPromise,
+  ])
+
+  const songs = uniqBy([...tracksLT, ...tracksMT, ...tracksST], 'id')
+
+  console.log(`Conseguí ${songs.length} canciones`)
+
+  const json = JSON.stringify({ songs })
+
+  writeFile('./public/data/db.json', json, 'utf8', err => {
     if (err) {
       console.log('An error occured while writing JSON Object to File.')
       return console.log(err)
