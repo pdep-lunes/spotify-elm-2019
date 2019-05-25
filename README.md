@@ -1,4 +1,4 @@
-# Pdeptify
+# Currify
 > Trabajo práctico integrador del paradigma funcional. Podes ver el enunciado completo [aca](https://github.com/pdep-lunes/spotify-elm-2019)
 
 ## Guia de instalacion
