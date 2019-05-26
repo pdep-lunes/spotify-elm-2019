@@ -14,6 +14,7 @@ type alias Model = {
   playerUrl: String, -- url of current song
   onlyLiked: Bool,
   filterText: String,
+  playing: Maybe Bool,
   key: Nav.Key, -- navigation
   url: Url.Url -- navigation
  }

@@ -1,4 +1,4 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Http
 import Browser
@@ -41,6 +41,7 @@ init flags url key =
     , queue = []
     , playerUrl = ""
     , filterText = ""
+    , playing = Nothing
     , onlyLiked = False
     , key = key
     , url = url }
@@ -61,13 +62,15 @@ update msg model =
         Err _ ->
           ( model, Cmd.none )
     AddToQueue song ->
-      -- use backend function
-      ( { model | queue = model.queue }, Cmd.none )
+      ( { model | queue = addSongToQueue song model.queue }, Cmd.none )
     RemoveFromQueue id ->
-      -- use backend function
-      ( { model | queue = model.queue }, Cmd.none )
+      ( { model | queue = removeSongFromQueue id model.queue }, Cmd.none )
+    PlayNextFromQueue id ->
+      ( playNextFromQueue model, Cmd.none )
     Play id ->
-      ( { model | playerUrl = urlById id model.songs }, Cmd.none )
+      ( { model | playerUrl = urlById id model.songs, playing = Just True }, Cmd.none )
+    PlayPause bool ->
+      ( { model | playing = Just bool }, togglePlay bool )
     Like id ->
       ( { model | songs =  toggleLike id model.songs }, Cmd.none )
     ToggleShowLiked ->
