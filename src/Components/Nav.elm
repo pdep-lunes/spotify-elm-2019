@@ -22,5 +22,5 @@ navbar model =
       hearth model.onlyLiked,
       text "Favoritas"
     ],
-    text "PdepTify"
+    text "Currify"
   ]
