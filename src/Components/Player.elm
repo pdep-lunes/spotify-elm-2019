@@ -44,7 +44,7 @@ player model =
             , id "audio-player" ]
             [],
     button [ class "player-button"
-           , onClick (PlayNextFromQueue model)
+           , onClick PlayNextFromQueue
            , disabled (skipForwardButtonDisabled model) ] [
       i [ class "icon ion-ios-skip-forward" ] []
     ]

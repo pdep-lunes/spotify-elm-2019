@@ -3,6 +3,7 @@ port module Main exposing (..)
 import Http
 import Browser
 import Browser.Navigation as Nav
+import Task exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Url
@@ -65,7 +66,7 @@ update msg model =
       ( { model | queue = addSongToQueue song model.queue }, Cmd.none )
     RemoveFromQueue id ->
       ( { model | queue = removeSongFromQueue id model.queue }, Cmd.none )
-    PlayNextFromQueue id ->
+    PlayNextFromQueue ->
       ( playNextFromQueue model, Cmd.none )
     Play id ->
       ( playSong model id, Cmd.none )
@@ -86,7 +87,7 @@ update msg model =
     UrlChanged url ->
       ( { model | url = url }, Cmd.none )
     SongEnded _ ->
-      ( { model | playing = Nothing, playerUrl = "" } , Cmd.none)
+      ( { model | playing = Nothing, playerUrl = "" } , Task.perform identity (Task.succeed PlayNextFromQueue) )
 
 -- SUBSCRIPTIONS
 

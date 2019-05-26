@@ -11,7 +11,7 @@ type Msg
   | Filter String
   | AddToQueue Song
   | RemoveFromQueue String
-  | PlayNextFromQueue Model
+  | PlayNextFromQueue
   | Play String
   | Like String
   | ToggleShowLiked
