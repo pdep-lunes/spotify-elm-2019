@@ -238,6 +238,10 @@
   background-color: #424242
 }
 
+.player-button:disabled:hover {
+  background-color: #424242;
+}
+
 .player-button:hover {
   background-color: #11ad49;
 }

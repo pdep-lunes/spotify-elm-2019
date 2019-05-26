@@ -85,12 +85,14 @@ update msg model =
           ( model, Nav.load href )
     UrlChanged url ->
       ( { model | url = url }, Cmd.none )
+    SongEnded _ ->
+      ( { model | playing = Nothing, playerUrl = "" } , Cmd.none)
 
 -- SUBSCRIPTIONS
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-  Sub.none
+    songEnded (\b -> SongEnded b)
 
 -- VIEW
 

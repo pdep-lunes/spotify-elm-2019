@@ -19,3 +19,4 @@ type Msg
   | LinkClicked Browser.UrlRequest
   | UrlChanged Url.Url
   | PlayPause Bool
+  | SongEnded Bool

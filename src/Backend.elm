@@ -55,3 +55,4 @@ applyFilters model =
     |> if model.onlyLiked then filterLiked else identity
 
 port togglePlay : Bool -> Cmd msg
+port songEnded : (Bool -> msg) -> Sub msg
