@@ -9,7 +9,7 @@ import Url
 import Url.Parser exposing (Parser, (</>), int, map, oneOf, s, string)
 
 import Views.Home exposing (homeView)
-import Views.Playlist exposing (playlistView)
+import Views.Queue exposing (queueView)
 import Components.Nav exposing (navbar)
 import Components.Player exposing (player)
 
@@ -38,7 +38,7 @@ main =
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key = 
   ( { songs = []
-    , playlist = []
+    , queue = []
     , playerUrl = ""
     , filterText = ""
     , onlyLiked = False
@@ -60,12 +60,12 @@ update msg model =
           ( { model | songs = songs }, Cmd.none )
         Err _ ->
           ( model, Cmd.none )
-    AddToPlaylist song ->
+    AddToQueue song ->
       -- use backend function
-      ( { model | playlist = model.playlist }, Cmd.none )
-    RemoveFromPlaylist id ->
+      ( { model | queue = model.queue }, Cmd.none )
+    RemoveFromQueue id ->
       -- use backend function
-      ( { model | playlist = model.playlist }, Cmd.none )
+      ( { model | queue = model.queue }, Cmd.none )
     Play id ->
       ( { model | playerUrl = urlById id model.songs }, Cmd.none )
     Like id ->
@@ -104,15 +104,15 @@ view model =
           navbar model,
           ul []
             [ viewLink "/home"
-            , viewLink "/playlist"
+            , viewLink "/queue"
             ],
           case model.url.path of
               "/home" -> 
                 homeView model
               "/" -> 
                 homeView model
-              "/playlist" ->
-                playlistView model
+              "/queue" ->
+                queueView model
               _ -> span [] [ text "404" ]
           ,
           player model

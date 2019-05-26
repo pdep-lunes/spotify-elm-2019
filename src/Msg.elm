@@ -8,8 +8,8 @@ import Types exposing (Song)
 type Msg
   = NoOp
   | Filter String
-  | AddToPlaylist Song
-  | RemoveFromPlaylist String
+  | AddToQueue Song
+  | RemoveFromQueue String
   | Play String
   | Like String
   | ToggleShowLiked
