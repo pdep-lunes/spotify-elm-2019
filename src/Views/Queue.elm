@@ -61,6 +61,7 @@ queueView model =
         , class "queue-container" ]
         ((List.map songItem << applyFilters) model)
     , div [ class "sidebar" ] [
+      h1 [ class "queue-name" ] [ text "Queue"],
       div [] ((List.map queueRow << List.take 100) model.queue)
     ]
   ]
