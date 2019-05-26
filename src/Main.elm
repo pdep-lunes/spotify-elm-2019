@@ -68,7 +68,7 @@ update msg model =
     PlayNextFromQueue id ->
       ( playNextFromQueue model, Cmd.none )
     Play id ->
-      ( { model | playerUrl = urlById id model.songs, playing = Just True }, Cmd.none )
+      ( playSong model id, Cmd.none )
     PlayPause bool ->
       ( { model | playing = Just bool }, togglePlay bool )
     Like id ->
