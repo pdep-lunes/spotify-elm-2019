@@ -1,7 +1,22 @@
 port module Backend exposing (..)
 import Types exposing(Song)
 
+import Utils exposing (..)
 import Models exposing (Model)
+
+-- Existe la funcion findSong que recibe
+-- una condicion y una lista de canciones
+-- findSong : (Song -> Bool) -> List Song -> Song
+
+-- Existe la funcion tailSafe que recibe
+-- una lista de canciones y se queda con la cola
+-- si la lista no tiene cola (tiene un solo elemento)
+-- se queda con una lista vacia
+-- tailSafe : List Song -> List Song
+
+-- Existe idFirst que recibe una lista
+-- de canciones y devuelve el id de la primera
+-- idFirst : List Song -> String
 
 -- Debería darnos la url de la cancion en base al id
 urlById : String -> List Song -> String

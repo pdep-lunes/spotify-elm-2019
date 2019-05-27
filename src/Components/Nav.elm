@@ -13,14 +13,21 @@ import Components.Hearth exposing (..)
 navbar : Model -> Html Msg
 navbar model =
   nav [ class "nav" ] [
-    img [ class "nav-logo"
+    a [ href "/home", class "logo-link" ] [
+      img [ class "nav-logo"
         , src "/img/logo.png" ] [],
+      text "Home"
+    ],
     search,
-    div [ class "nav-toggle-only-liked"
+    div [ class "nav-button"
         , class (if model.onlyLiked then "selected" else "")
         , onClick ToggleShowLiked ] [
       hearth model.onlyLiked,
       text "Favoritas"
+    ],
+    a [ href "/queue", class "nav-button" ] [
+      i [ class "icon ion-ios-list" ] [],
+      text "Queue"
     ],
     text "Currify"
   ]

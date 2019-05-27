@@ -15,6 +15,7 @@ import Components.Nav exposing (navbar)
 import Components.Player exposing (player)
 
 import Backend exposing (..)
+import Utils exposing (..)
 import Models exposing (Model)
 
 import Data.Song exposing (getAllTheSongs)
@@ -93,7 +94,7 @@ update msg model =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    songEnded (\b -> SongEnded b)
+  songEnded (\b -> SongEnded b)
 
 -- VIEW
 
@@ -108,10 +109,6 @@ view model =
       div [] [
         div [ class "root" ] [
           navbar model,
-          ul []
-            [ viewLink "/home"
-            , viewLink "/queue"
-            ],
           case model.url.path of
               "/home" -> 
                 homeView model
@@ -119,7 +116,10 @@ view model =
                 homeView model
               "/queue" ->
                 queueView model
-              _ -> span [] [ text "404" ]
+              _ -> div [ class "not-found" ] [
+                text "404",
+                br [] [],
+                text "Not found" ]
           ,
           player model
         ]
