@@ -32,15 +32,16 @@
   color: white;
 }
 
-.nav a {
-  color: white;
-  text-decoration: none;
+.logo-and-search {
+  display: flex;
+  width: 80%;
 }
 
 .nav .logo-link {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 20px;
 }
 
 .nav .logo-link img {
@@ -53,9 +54,19 @@
   justify-self: flex-start;
 }
 
+.nav-buttons {
+  display: flex;
+  width: 20%;
+  justify-content: space-around;
+  max-width: 200px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
 .nav-button {
-  width: 25px;
-  height: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,9 +89,7 @@
 }
 
 .search-container {
-  justify-self: center;
-  width: 50%;
-  height: 80%;
+  width: 80%;
 }
 
 .search-input {
@@ -148,9 +157,11 @@
 
 .song-cover-container::after {
   content: "\f357";
+  left: calc(50% - 25px / 2);
 }
 .song-cover-container-queue::after {
   content: "\f272";
+  left: calc(50% - 32.5px / 2);
 }
 
 .song-cover-container::after,
@@ -160,10 +171,9 @@
   position: relative;
   color: #1ed760;
   font-size: 40px;
-  top: calc(-40px - 70px);
+  top: -50%;
   height: 20px;
-  width: 150px;
-  left: 70px;
+  width: 100%;
   transition: all 0.2s;
   cursor: pointer;
 }
@@ -268,7 +278,6 @@
 
 .queue-container {
   padding-right: calc(20px + var(--sidebar-size));
-  display: flex;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
   grid-gap: 15px 20px;
@@ -285,7 +294,7 @@
   overflow-y: scroll;
 }
 
-.sidebar::-webkit-scrollbar { 
+::-webkit-scrollbar { 
   display: none;
 }
 
@@ -366,4 +375,66 @@
   color: white;
   font-size: 40px;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .root {
+    padding-top: 113px;
+  }
+  .nav {
+    margin: 0;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 1px 1px 6px #282828;
+    background-color: #282828;
+    height: fit-content;
+    padding: 4px 10px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: flex-start;
+  }
+  .logo-and-search {
+    padding-top: 10px;
+    width: 100%;
+  }
+  .search-container {
+    width: 100%;
+  }
+  .sidebar {
+    width: 100%;
+    height: 120px;
+    position: fixed;
+    left: 0px;
+    bottom: 65px;
+    padding-top: 0px;
+    top: initial;
+  }
+  .sidebar .queue-title {
+    padding-top: 5px;
+    position: fixed;
+    width: 100%;
+    background-color: #3d3d3d;
+  }
+  .sidebar .queue-title h1 {
+    margin-bottom: 5px;
+  }
+  .sidebar .queue-list {
+    padding-top: 50px;
+  }
+  .nav-buttons {
+    max-width: none;
+    width: 100%;
+    margin: 10px 0;
+  }
+  .home-container {
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  }
+  .queue-container {
+    padding-right: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  }
+  .hidden {
+    display: none;
+  }
 }

@@ -40,7 +40,6 @@ queueRow : Song -> Html Msg
 queueRow song =
   div [ class "queue-row" ] [
     img [ class "queue-song-cover"
-        , onClick (Play song.id)
         , src song.cover
         , width 40
         , height 40 ] [],
@@ -60,8 +59,10 @@ queueView model =
     div [ class "container"
         , class "queue-container" ]
         ((List.map songItem << applyFilters) model)
-    , div [ class "sidebar" ] [
-      h1 [ class "queue-name" ] [ text "Queue"],
-      div [] ((List.map queueRow << List.take 100) model.queue)
+    , div [ class "sidebar", class (if (List.isEmpty model.queue) then "hidden" else "") ] [
+      div [ class "queue-title" ] [
+        h1 [ class "queue-name" ] [ text "Queue"]
+      ],
+      div [ class "queue-list" ] ((List.map queueRow << List.take 100) model.queue)
     ]
   ]
