@@ -60,6 +60,7 @@ playNextFromQueue model = model
 
 -- Esta funcion recibe el modelo y empieza a reproducir la
 -- cancion que tenga el id que se pasa...
+-- Mirar la función urlById
 playSong : Model -> String -> Model
 playSong model id = { model | playerUrl = urlById id model.songs, playing = (if id /= "" then Just True else Nothing) }
 
