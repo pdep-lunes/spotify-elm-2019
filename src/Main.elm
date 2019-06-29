@@ -1,19 +1,21 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Http
 import Browser
 import Browser.Navigation as Nav
+import Task exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Url
 import Url.Parser exposing (Parser, (</>), int, map, oneOf, s, string)
 
 import Views.Home exposing (homeView)
-import Views.Playlist exposing (playlistView)
+import Views.Queue exposing (queueView)
 import Components.Nav exposing (navbar)
 import Components.Player exposing (player)
 
 import Backend exposing (..)
+import Utils exposing (..)
 import Models exposing (Model)
 
 import Data.Song exposing (getAllTheSongs)
@@ -38,9 +40,10 @@ main =
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key = 
   ( { songs = []
-    , playlist = []
+    , queue = []
     , playerUrl = ""
     , filterText = ""
+    , playing = Nothing
     , onlyLiked = False
     , key = key
     , url = url }
@@ -60,14 +63,16 @@ update msg model =
           ( { model | songs = songs }, Cmd.none )
         Err _ ->
           ( model, Cmd.none )
-    AddToPlaylist song ->
-      -- use backend function
-      ( { model | playlist = model.playlist }, Cmd.none )
-    RemoveFromPlaylist id ->
-      -- use backend function
-      ( { model | playlist = model.playlist }, Cmd.none )
+    AddToQueue song ->
+      ( { model | queue = addSongToQueue song model.queue }, Cmd.none )
+    RemoveFromQueue id ->
+      ( { model | queue = removeSongFromQueue id model.queue }, Cmd.none )
+    PlayNextFromQueue ->
+      ( playNextFromQueue model, Cmd.none )
     Play id ->
-      ( { model | playerUrl = urlById id model.songs }, Cmd.none )
+      ( playSong model id, Cmd.none )
+    PlayPause bool ->
+      ( { model | playing = Just bool }, togglePlay bool )
     Like id ->
       ( { model | songs =  toggleLike id model.songs }, Cmd.none )
     ToggleShowLiked ->
@@ -82,12 +87,14 @@ update msg model =
           ( model, Nav.load href )
     UrlChanged url ->
       ( { model | url = url }, Cmd.none )
+    SongEnded _ ->
+      ( { model | playing = Nothing, playerUrl = "" } , Task.perform identity (Task.succeed PlayNextFromQueue) )
 
 -- SUBSCRIPTIONS
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-  Sub.none
+  songEnded (\b -> SongEnded b)
 
 -- VIEW
 
@@ -102,18 +109,17 @@ view model =
       div [] [
         div [ class "root" ] [
           navbar model,
-          ul []
-            [ viewLink "/home"
-            , viewLink "/playlist"
-            ],
           case model.url.path of
               "/home" -> 
                 homeView model
               "/" -> 
                 homeView model
-              "/playlist" ->
-                playlistView model
-              _ -> span [] [ text "404" ]
+              "/queue" ->
+                queueView model
+              _ -> div [ class "not-found" ] [
+                text "404",
+                br [] [],
+                text "Not found" ]
           ,
           player model
         ]

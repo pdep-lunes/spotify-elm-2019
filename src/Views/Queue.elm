@@ -1,4 +1,4 @@
-module Views.Playlist exposing (..)
+module Views.Queue exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -16,8 +16,8 @@ import Html.Events exposing (..)
 songItem : Song -> Html Msg
 songItem song =
   div [ class "song-container" ] [
-    div [ class "song-cover-container-playlist"
-        , onClick (AddToPlaylist song) ] [
+    div [ class "song-cover-container-queue"
+        , onClick (AddToQueue song) ] [
       img [ class "song-cover"
           , src song.cover
           , width 150
@@ -29,39 +29,40 @@ songItem song =
           , onClick (Play song.id) ] [ text song.name ],
         span [ class "song-artist" ] [ text song.artist ]
       ],
-      div [ class "add-to-playlist" ] [
+      div [ class "add-to-queue" ] [
         i [ class "icon ion-ios-add-circle button-add"
-          , onClick (AddToPlaylist song) ] []
+          , onClick (AddToQueue song) ] []
       ]
     ]
   ]
 
-playlistRow : Song -> Html Msg
-playlistRow song =
-  div [ class "playlist-row" ] [
-    img [ class "playlist-song-cover"
-        , onClick (Play song.id)
+queueRow : Song -> Html Msg
+queueRow song =
+  div [ class "queue-row" ] [
+    img [ class "queue-song-cover"
         , src song.cover
         , width 40
         , height 40 ] [],
-    div [ class "playlist-song-info" ] [
+    div [ class "queue-song-info" ] [
       span [ class "song-name" ] [ text song.name ],
       span [ class "song-artist" ] [ text song.artist ]
     ],
-    div [ class "remove-from-playlist" ] [
+    div [ class "remove-from-queue" ] [
       i [ class "icon ion-ios-remove-circle button-remove"
-        , onClick (RemoveFromPlaylist song.id) ] []
+        , onClick (RemoveFromQueue song.id) ] []
     ]
   ]
 
-playlistView : Model -> Html Msg
-playlistView model =
+queueView : Model -> Html Msg
+queueView model =
   div [] [
     div [ class "container"
-        , class "playlist-container" ]
+        , class "queue-container" ]
         ((List.map songItem << applyFilters) model)
-    , div [ class "sidebar" ] [
-      h1 [ class "playlist-name" ] [ text "pdeplaylist"],
-      div [] ((List.map playlistRow << List.take 100) model.playlist)
+    , div [ class "sidebar", class (if (List.isEmpty model.queue) then "hidden" else "") ] [
+      div [ class "queue-title" ] [
+        h1 [ class "queue-name" ] [ text "Queue"]
+      ],
+      div [ class "queue-list" ] ((List.map queueRow << List.take 100) model.queue)
     ]
   ]

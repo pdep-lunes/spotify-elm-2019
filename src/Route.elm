@@ -10,13 +10,13 @@ import Url.Parser as Parser exposing ((</>), Parser, map, oneOf, s, string)
 
 type Route
   = Home
-  | Playlist
+  | Queue
 
 parser : Parser (Route -> a) a
 parser =
   oneOf
     [ map Home Parser.top
-    , map Playlist (s "playlist")
+    , map Queue (s "queue")
     ]
 
 -- PUBLIC HELPERS
@@ -49,7 +49,7 @@ routeToString page =
       case page of
         Home ->
           []
-        Playlist ->
-          [ "/playlist" ]
+        Queue ->
+          [ "/queue" ]
   in
   "#/" ++ String.join "/" pieces
